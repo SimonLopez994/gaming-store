@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 
 export const BannerContainer = styled.div`
-max-width:45rem;
+max-width:55rem;
 position:absolute;
 top:30%;
 left:5rem;`
 export const Title = styled.h1`
-font-size:7rem;
+font-size:8.5rem;
 text-shadow: 0px 2px 10px black;
 color:white;
 padding: 0;

@@ -65,6 +65,9 @@ const SignUp = () => {
                     setAlertType(false)
 
             }
+            setTimeout(() => {
+                setAlertMessage('')
+            }, 2500)
         }
     }
 

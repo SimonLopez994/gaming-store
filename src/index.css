@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-weight:lighter;
   font-family:'Bebas Neue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

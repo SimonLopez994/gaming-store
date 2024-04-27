@@ -25,6 +25,12 @@ const SignIn = () => {
 
     const signInWithGoogle = async () => {
         await signInWithGooglePopup();
+        setAlertMessage('Signed succesfully');
+        setFormField(defaultFormField)
+        setAlertType(true);
+        setTimeout(() => {
+            setAlertMessage('')
+        }, 2500)
     }
 
     const handleSubmit = async (event) => {
@@ -34,14 +40,14 @@ const SignIn = () => {
         try {
             const { user } = await signInUserAuthWithEmailAndPassword(email, password)
 
-            if (user) {
+ 
                 setAlertMessage('Signed succesfully');
                 setFormField(defaultFormField)
                 setAlertType(true);
                 setTimeout(() => {
                     setAlertMessage('')
                 }, 2500)
-            }
+            
 
         } catch (error) {
             switch (error.code) {
@@ -61,14 +67,21 @@ const SignIn = () => {
                     setAlertMessage('Password should be at least 6 characters');
                     setAlertType(false)
                     break
+                    case 'auth/popup-closed-by-user':
+                    setAlertMessage('auth/popup-closed-by-user');
+                    setAlertType(false)
+                    break
                     default:
                         setAlertMessage('An error happened');
                         setAlertType(false)
+                      
 
 
             }
 
-
+            setTimeout(() => {
+                setAlertMessage('')
+            }, 2500)
 
 
         }

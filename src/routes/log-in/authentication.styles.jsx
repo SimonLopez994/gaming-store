@@ -4,6 +4,7 @@ export const AuthenticationContainer = styled.div`
 display: flex;
 width: 100%;
 padding-top:5rem;
+flex-wrap:wrap;
 max-width:85rem;
 justify-content: space-between;
 margin: 0 auto;`
