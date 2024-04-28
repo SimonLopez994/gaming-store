@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider, getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, collection, doc, getDoc, setDoc, writeBatch } from "firebase/firestore";
+import { getFirestore, collection, doc, getDocs, getDoc, setDoc, writeBatch, query } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,7 +45,15 @@ export const addCollectionAndDocuments = async (collectionKey, objects) => {
 }
 
 
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, 'console_games');
+    const q = query(collectionRef)
 
+    const documentSnapshot = await getDocs(q);
+    const categoriesObject = documentSnapshot.docs.map((documentSnapshot) => documentSnapshot.data())
+
+    return categoriesObject
+}
 
 
 
