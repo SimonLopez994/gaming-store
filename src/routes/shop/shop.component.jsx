@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { setProducts } from "../../store/products/products.action";
 import { getCategoriesAndDocuments } from "../../utils/firebase.utils";
-import { selectProductsArray } from "../../store/products/products.selector";
+import { selectProductsMap } from "../../store/products/products.selector";
+import ProductsPreview from "../../components/products-preview/products-preview.component";
+import { ShopContainer, Title, MainShopContainer } from "./shop.styles";
 
 const Shop = () => {
   const dispatch = useDispatch()
-  const products = useSelector(selectProductsArray);
+  const productsMap = useSelector(selectProductsMap);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -18,14 +21,18 @@ const Shop = () => {
   }, [])
 
   return (
-    <>
-      {Object.keys(products).map((title) => {
-        const productsObject = products[title];
+    <MainShopContainer>
+    <Title>SHOP</Title>
+      {Object.keys(productsMap).map((title) => {
+        const products = productsMap[title];
         return (
-          <CategoryPreview key={title} title={title} products={productsObject} />
+          <ShopContainer>
+            <ProductsPreview products={products} title={title} />
+          </ShopContainer>
+
         );
       })}
-    </>
+    </MainShopContainer>
 
   );
 };

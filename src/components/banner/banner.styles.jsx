@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const BannerContainer = styled.div`
 max-width:55rem;
 position:absolute;
-top:30%;
+top:40%;
 left:5rem;`
 export const Title = styled.h1`
 font-size:8.5rem;

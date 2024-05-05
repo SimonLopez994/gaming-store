@@ -1,26 +1,31 @@
 
-import { Slider, ImageContainer } from './home.styles.jsx';
+import { Slider, ImageContainer, ReproductionBar } from './home.styles.jsx';
 
-import GOWImage from '../../images/god-of-war.jpg';
-import HorizonImage from '../../images/horizon.jpg';
-import AssasinImage from '../../images/assasin.jpg'
+import GOWImage from '../../images/soldiers-military-operation-red-background-2048x2048-5462.jpg';
+import HorizonImage from '../../images/shop.jpg';
+import Battlefield from '../../images/battlefield.png'
+import AssasinImage from '../../images/assasin.jpg';
+import CyberPunk from '../../images/cyberPunk.jpeg'
 import { useEffect, useRef, useState } from 'react';
 import Banner from '../../components/banner/banner.component.jsx';
 import gsap from 'gsap';
 
 
-const images = [HorizonImage, GOWImage, AssasinImage, HorizonImage];
+const images = [GOWImage, HorizonImage, AssasinImage, Battlefield, CyberPunk];
 
 const Home = () => {
 
     const slider = useRef(null);
+    const repBarRef = useRef(null);
     const [imageIndex, setImageIndex] = useState(0);
 
     useEffect(() => {
-        if (imageIndex === 0) {
+        if (imageIndex === 5) {
+
             gsap.set(slider.current, {
                 x: 0,
             })
+
         } else {
             gsap.to(slider.current, {
                 x: -imageIndex * window.innerWidth,
@@ -28,6 +33,22 @@ const Home = () => {
                 ease: 'power1.inOut',
             });
         }
+    }, [imageIndex]);
+
+
+    useEffect(() => {
+
+        if (imageIndex === 0) {
+            gsap.set(repBarRef.current, {
+                width: '0%',
+                
+            })
+        }
+        gsap.to(repBarRef.current, {
+            width: '100%',
+            duration: 3,
+            repeat: true,
+        })
     }, [imageIndex]);
 
     useEffect(() => {
@@ -39,7 +60,7 @@ const Home = () => {
                     return prevIndex + 1; // Incrementa el índice
                 }
             });
-        }, 2000);
+        }, 3000);
 
         return () => clearInterval(interval);
     }, []);
@@ -54,6 +75,7 @@ const Home = () => {
                 )}
             </Slider>
             <Banner />
+            <ReproductionBar ref={repBarRef}></ReproductionBar>
         </div>
     )
 }

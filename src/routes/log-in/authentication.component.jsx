@@ -8,9 +8,6 @@ import VideoAuth from '../../videos/spiderman-video-1.mp4'
 const Authentication = () => {
     return (
         <AuthenticationContainer>
-            <VideoContainer loop autoPlay controls={false}>
-                <source src={VideoAuth} type='video/mp4'/>
-            </VideoContainer>
             <SignIn />
             <SignUp />
         </AuthenticationContainer>

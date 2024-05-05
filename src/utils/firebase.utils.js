@@ -46,7 +46,7 @@ export const addCollectionAndDocuments = async (collectionKey, objects) => {
 
 
 export const getCategoriesAndDocuments = async () => {
-    const collectionRef = collection(db, 'console_games');
+    const collectionRef = collection(db, 'games');
     const q = query(collectionRef)
 
     const documentSnapshot = await getDocs(q);
